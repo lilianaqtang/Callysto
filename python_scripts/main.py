@@ -55,34 +55,57 @@ def construct_building(x, y, z):
 
     print("Building volume = length x width x height = {0:.{1}f}m\u00b3".format(x * y * z, 0))
 
-    # Configure Plotly to be rendered inline in the notebook.
-    plotly.offline.init_notebook_mode()
+    fig = go.Figure(data=[
+        go.Mesh3d(
+           x=[0, 0, x, x, 0, 0, x, x],
+           y=[0, y, y, 0, 0, y, y, 0],
+           z=[0, 0, 0, 0, z, z, z, z],
 
-    # Configure the trace.
-    trace = go.Scatter3d(
-        x=[0, x],
-        y=[0, y],
-        z=[0, z],
-
-        mode='markers',
-        marker={
-            'size': 10,
-            'opacity': 0.8,
-            'color': 'olive'
-        },
-        text=['Your Floor Areas', 'Your Wall Areas', 'Roof']
-
+        colorbar_title='z',
+        colorscale=[[0, 'gold'],
+                    [0.5, 'mediumturquoise'],
+                    [1, 'magenta']],
+        # Intensity of each vertex, which will be interpolated and color-coded
+        intensity = np.linspace(0, 1, 12, endpoint=True),
+        intensitymode='cell',
+        # i, j and k give the vertices of triangles
+        i = [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+        j = [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
+        k = [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
+        name='y',
+        showscale=False
     )
+])
 
-    # Configure the layout.
-    layout = go.Layout(
-        margin={'l': 0, 'r': 0, 'b': 0, 't': 0},
-        plot_bgcolor='rgb(12,163,135)'
-    )
+    fig.show()
+    display(Markdown("Building faces which direction? (aspect)"))
+    display(Markdown("<br> *Display the whole building, add aspect labels – allow rotation*"))
 
-    data = [trace]
+    display(Markdown("Window on N, E, S, W wall?"))
+    display(Markdown("<br> *toggle for windows on each N, E, S, W wall*"))
 
-    plot_figure = go.Figure(data=data, layout=layout)
+    display(Markdown("Change size of window"))
+    display(Markdown("<br> *(all windows are set to same, and only 0 or 1 per wall)*"))
 
-    # Render the plot.
-    plotly.offline.iplot(plot_figure)
+    display(Markdown("W2W Ratio (window area : wall area)   (interactive calculation) m2  : (interactive calculation) m2 "))
+    
+    display(Markdown("Insulation (thickness of wall)"))
+    display(Markdown("<br> *(Display only one wall)*"))
+
+    display(Markdown("Insulation (glass specification)"))
+    display(Markdown("<br> *(Display only one wall)*"))
+    
+    display(Markdown("Insulation (roof specification)"))
+    display(Markdown("<br> *(Display building with shaded roof)*"))
+
+    display(Markdown("#### <span style='color:blue'>Better Building Calculations"))
+    display(Markdown("Cost to build (interactive calculation) $"))
+    display(Markdown("<br> *blurb from architecture team to explain calculation  and why it matters*"))
+
+    display(Markdown("Heat Loss (interactive calculation) kW"))
+    display(Markdown("<br> *blurb from architecture team to explain calculation  and why it matters*"))
+
+    display(Markdown("Heating Intensity (Peak Thermal Load)  (interactive calculation) W/m2"))
+    display(Markdown("<br> *blurb from architecture team to explain calculation  and why it matters*"))
+    display(Markdown("<br> *blurb from architecture team about what desirable aim is for a sustainable building*"))
+
