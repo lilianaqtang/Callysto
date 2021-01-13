@@ -36,14 +36,15 @@ def choose_subject(option):
     if option == 'Architecture':
          display(Markdown("### <span style='color:blue'>ARCHITECTURE FOCUS SELECTED"))
          display(Markdown("<br> *Introductory blurb about architecture from architecture team. Use a graphic from Pulp team.*"))
-         display(Markdown("#### <span style='color:blue'>Variables in architecture"))
-         display(Markdown("Select building size:"))
+         display(Markdown("#### <span style='color:blue'><u>Variables in architecture</u>"))
+         display(Markdown("<span style='color:red'><u>Select building dimensions:</u>"))
          interact_manual(construct_building,
          x=widgets.FloatSlider(min=1, max=20, step=1, value=1,description='Length: X(m)',style=style),
          y=widgets.FloatSlider(min=1, max=20, step=1, value=1,description='Width: Y(m)',style=style),
          z=widgets.FloatSlider(min=1, max=20, step=1, value=1,description='Height: Z(m)',style=style));
-         display(Markdown("Select building & window sizes:"))
-         display(Markdown("<br> *(all windows are set to same, and only 0 or 1 per wall)*"))
+         display(Markdown("<span style='color:red'><u>Select building orientation by clicking & holding the building to the direction you wish:</u>"))
+         display(Markdown("<span style='color:red'><u>Select glazing:</u>"))
+         display(Markdown("<br> Change size of window *(all windows are set to same, and only 0 or 1 per wall)*"))
          interact_manual(choose_direction,
              direction=widgets.RadioButtons(
                  options=['North(N)', 'South(S)', 'West(W)', 'East(E)'],
@@ -57,28 +58,29 @@ def choose_subject(option):
             x1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Length of the window: X(m)', style=style),
             y1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Height of the window: Y(m)', style=style),
             z1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Thickness of the window: Z(m)', style=style));
-         display(Markdown("W2W Ratio (window area : wall area)   (interactive calculation) m2  : (interactive calculation) m2 "))
 
-         display(Markdown("Insulation (thickness of wall)"))
-         display(Markdown("<br> *(Display only one wall)*"))
+         display(Markdown("<span style='color:red'><u>Insulation (thickness of wall):</u>"))
+         display(Markdown("<br> *(Display only one wall) - Image from Pulp team*"))
 
-         display(Markdown("Insulation (glass specification)"))
-         display(Markdown("<br> *(Display only one wall)*"))
+         display(Markdown("<span style='color:red'><u>Insulation (glass specification):</u>"))
+         display(Markdown("<br> *(Display only one wall) - Image from Pulp team*"))
 
-         display(Markdown("Insulation (roof specification)"))
-         display(Markdown("<br> *(Display building with shaded roof)*"))
+         display(Markdown("<span style='color:red'><u>Insulation (roof specification):</u>"))
+         display(Markdown("<br> *(Display building with shaded roof) - Image from Pulp team*"))
 
-         display(Markdown("#### <span style='color:blue'>Better Building Calculations"))
-         display(Markdown("Cost to build (interactive calculation) $"))
-         display(Markdown("<br> *blurb from architecture team to explain calculation  and why it matters*"))
+         display(Markdown("#### <span style='color:blue'><u>Better Building Calculations<u>"))
+         display(Markdown("#### <span style='color:red'>Cost to build ($):"))
+         display(Markdown("<br> The cost of a building is important to every client, and there are lots of different considerations that need be understood, so that they can be weighed up and decided upon. For this example, the investigation is looking at how a more insulated building could help to reduce the size of the heating system. Both of these have impact in capital cost and operating costs for heating energy bills (natural gas, electricity, wood, oil, etc)."))
 
-         display(Markdown("Heat Loss (interactive calculation) kW"))
-         display(Markdown("<br> *blurb from architecture team to explain calculation  and why it matters*"))
+         display(Markdown("#### <span style='color:red'>Heat Loss (kW): "))
+         display(Markdown("<br> The heat loss of a building is calculated by measuring the surface area (or envelope) of the building walls, windows, roof and floor that is exposed to the outside environment. Each component of the building has insulative properties that will slow down the amount of heat that is transmitted (or lost) through to outside. Advanced calculations also include heat lost by air leakages (cold drafts) and heat required to warm up air for ventilation purposes to keep occupant healthy with good air quality."))
 
-         display(Markdown("Heating Intensity (Peak Thermal Load)  (interactive calculation) W/m2"))
-         display(Markdown("<br> *blurb from architecture team to explain calculation  and why it matters*"))
-         display(Markdown("<br> *blurb from architecture team about what desirable aim is for a sustainable building*"))
-
+         display(Markdown("#### <span style='color:red'>Heating Intensity (Peak Thermal Load) (W/m\u00b2): "))
+         display(Markdown("<br> The total heat loss for the building is calculated by adding up the heat losses from each building envelope component. This number vary considerably from project to project and is dependent upon size of building, WWR and level of insulation standards. In order to give a simple comparison of relative energy efficiency, a heating intensity calculation is performed by dividing the total heat loss by the habitable building floor area. This calculation takes the whole sum of heating requirements and averages it out over the floor area. The lower the peak thermal load the better the building, and the lower costs to operate."))
+         display(Markdown("<b> The desirable aim is for a sustainable building:"))
+         display(Markdown("The goal in designing a sustainable building should be that the envelope is capable of keeping occupants comfortable and healthy in the middle of winter without the need for extra heating. Interestingly, Canada has been involved in research into how these buildings should be designed and <a href='https://www.src.sk.ca/blog/closer-look-saskatchewan-conservation-house-and-four-others' target='_blank'>some built examples </a> show that this can be achieved even in a cold winter prairie climate."))
+         display(Markdown("However, despite proof that this technology works, it is unfortunate that many buildings that are built in Canada today still require large amounts of energy to keep them comfortable and this results in greenhouse gas emissions, climate change as well as high costs for building owners."))
+         display(Markdown("The goal of this learning tool is provide a first step in education of how simple steps can make significant results in lower the need for heating energy and improving the global environment and comfort for building occupants."))
     elif option == 'Biology':
          display(Markdown("### <span style='color:blue'>BIOLOGY FOCUS SELECTED"))
 
@@ -146,13 +148,52 @@ proportions of a stick ungulate are as follows:"""))
          interact_manual(fitness_function,
                          a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='a\u2081', style=style),
                          b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='b\u2081', style=style),
-                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='c\u2081',
-                                               style=style));
-
-
+                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='c\u2081', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         interact_manual(fitness_function,
+                    a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='a\u2081', style=style),
+                    b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='b\u2081', style=style),
+                    c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='c\u2081', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         interact_manual(fitness_function,
+                         a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='a\u2081', style=style),
+                         b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='b\u2081', style=style),
+                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='c\u2081', style=style));
+         display(Markdown("The environments you specify will remain unchanged over the course of the three trials."))
+         display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many variations of environments as possible."))
+         display(Markdown("**Modelling the Population**"))
+         display(Markdown("In this section, you will define the characteristics of an initial population of stick ungulates that will inhabit each of your three environments. The height of the stick ungulates will be determined by two alleles and . Using the appropriate sliders below specify the heights that are determined by each phenotype. Next the appropriate sliders below specify the initial frequency of each allele. Once you have set the heights that are determined by each phenotype and the initial frequency of each allele a table of detailing your population will be outputted. The table will identify the three genotypes in your population, their frequency, corresponding heights and fitness in each of the three environments. Population averages will also be reported."))
+         display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081', style=style),
+                         b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - b\u2081', style=style),
+                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - c\u2081', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa', style=style));
     elif option == 'Physics':
          display(Markdown("### <span style='color:blue'>PHYSICS FOCUS SELECTED"))
 
+def generation(a, b, c, a1, b1, c1):
+    from IPython.display import HTML, display
+    freq_AA = 'p\u00b2 = ' + str(a1/10 * a1/10)
+    freq_Aa = 'p(1-p) = ' + str(b1/10 * (1 - b1/10))
+    freq_aa = '(1 - p)\u00b2 = ' + str((1-c1/10) * (1-c1/10))
+    fitness_AA = 'w\u2081' + '(xAA) = ' + str(a * a1 * a1 + b * a1 + c)
+    fitness_Aa = 'w\u2081' + '(xAa) = ' + str(a * b1 * b1 + b * b1 + c)
+    fitness_aa = 'w\u2081' + '(xaa) = ' + str(a * c1 * c1 + b * c1 + c)
+    data = [['Phenotype', 'Frequency', 'Fitness'],
+            ['AA', freq_AA, fitness_AA],
+            ['Aa', freq_Aa, fitness_Aa],
+            ['aa', freq_aa, fitness_aa],
+            ]
+    display(Markdown("#### <span style='color:blue'>Table"))
+    display(HTML(
+        '<table><tr>{}</tr></table>'.format(
+            '</tr><tr>'.join(
+                '<td>{}</td>'.format('</td><td>'.join(str(_) for _ in row)) for row in data)
+        )
+    ))
 def initialize_map(sparseness_of_map, size_of_map, number_of_groups):
     the_map = np.zeros((size_of_map, size_of_map))    
     for i in range(0, size_of_map):
@@ -403,6 +444,21 @@ def fitness_function(a, b, c):
     x_square = "x\u00b2"
     final_string = fitness + str(a) + x_square + " + " + str(b) + "x" + " + " + str(c)
     print(final_string)
+    print("Graph of Fitness:")
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    x = np.linspace(-10, 10, num=100)
+    fx = []
+    for i in range(len(x)):
+        fx.append(a*x[i] ** 2 - b * x[i] + c)
+
+    plt.plot(x, fx)
+    plt.grid()
+    plt.axvline()
+    plt.axhline()
+    plt.show()
+
 
 def construct_building(x, y, z):
     """
@@ -466,6 +522,9 @@ def choose_direction(direction, x, y, z, x1, y1, z1):
         ax.set_zlim(0, z)
 
         plt.show()
+        window_area = x1 * y1
+        wall_area = x * y
+        print('Window to Wall Ratio (WWR) = window area : wall area = ', str(window_area/wall_area))
     elif direction == 'North(N)':
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
@@ -486,6 +545,9 @@ def choose_direction(direction, x, y, z, x1, y1, z1):
         ax.set_zlim(0, z)
 
         plt.show()
+        window_area = x1 * y1
+        wall_area = x * y
+        print('Window to Wall Ratio (WWR) = window area : wall area = ', str(window_area/wall_area))
         # Windows
     elif direction == 'East(E)':
         fig = plt.figure()
@@ -504,6 +566,10 @@ def choose_direction(direction, x, y, z, x1, y1, z1):
         ax.set_xlim(0, x)
         ax.set_ylim(0, y)
         ax.set_zlim(0, z)
+        plt.show()
+        window_area = x1 * y1
+        wall_area = x * y
+        print('Window to Wall Ratio (WWR) = window area : wall area = ', str(window_area/wall_area))
     elif direction == 'South(S)':
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
@@ -524,4 +590,7 @@ def choose_direction(direction, x, y, z, x1, y1, z1):
         ax.set_zlim(0, z)
 
         plt.show()
+        window_area = x1 * y1
+        wall_area = x * y
+        print('Window to Wall Ratio (WWR) = window area : wall area = ', str(window_area/wall_area))
 	

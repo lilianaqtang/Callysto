@@ -1,0 +1,4 @@
+change the "Run Interact" to "Calculate"
+can we remove the result as we move the slider
+
+ask Byron the latest date to send stuff to Byron so we could have this up and running before Christmas break
