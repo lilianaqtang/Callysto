@@ -168,20 +168,22 @@ proportions of a stick ungulate are as follows:"""))
                          a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081', style=style),
                          b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - b\u2081', style=style),
                          c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - c\u2081', style=style),
-                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA', style=style),
-                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa', style=style),
-                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa', style=style));
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
+         display(Markdown("**Modelling Natural Selection**"))
+
     elif option == 'Physics':
          display(Markdown("### <span style='color:blue'>PHYSICS FOCUS SELECTED"))
 
 def generation(a, b, c, a1, b1, c1):
     from IPython.display import HTML, display
-    freq_AA = 'p\u00b2 = ' + str(a1/10 * a1/10)
-    freq_Aa = 'p(1-p) = ' + str(b1/10 * (1 - b1/10))
-    freq_aa = '(1 - p)\u00b2 = ' + str((1-c1/10) * (1-c1/10))
-    fitness_AA = 'w\u2081' + '(xAA) = ' + str(a * a1 * a1 + b * a1 + c)
-    fitness_Aa = 'w\u2081' + '(xAa) = ' + str(a * b1 * b1 + b * b1 + c)
-    fitness_aa = 'w\u2081' + '(xaa) = ' + str(a * c1 * c1 + b * c1 + c)
+    freq_AA = 'p\u00b2 = ' + '{0:.3g}'.format(a1/10 * a1/10)
+    freq_Aa = 'p(1-p) = ' + '{0:.3g}'.format(b1/10 * (1 - b1/10))
+    freq_aa = '(1 - p)\u00b2 = ' + '{0:.3g}'.format((1-c1/10) * (1-c1/10))
+    fitness_AA = 'w\u2081' + '(xAA) = ' + '{0:.3g}'.format(a * a1 * a1 + b * a1 + c)
+    fitness_Aa = 'w\u2081' + '(xAa) = ' + '{0:.3g}'.format(a * b1 * b1 + b * b1 + c)
+    fitness_aa = 'w\u2081' + '(xaa) = ' + '{0:.3g}'.format(a * c1 * c1 + b * c1 + c)
     data = [['Phenotype', 'Frequency', 'Fitness'],
             ['AA', freq_AA, fitness_AA],
             ['Aa', freq_Aa, fitness_Aa],
@@ -194,6 +196,24 @@ def generation(a, b, c, a1, b1, c1):
                 '<td>{}</td>'.format('</td><td>'.join(str(_) for _ in row)) for row in data)
         )
     ))
+    display(Markdown("#### <span style='color:blue'>Phenotypic Distribution"))
+    genes = ['AA', 'Aa', 'aa']
+    x_pos = np.arange(len(genes))
+    freqs = [a1/10 * a1/10, b1/10 * (1 - b1/10), (1-c1/10) * (1-c1/10)]
+    # Build the plot
+    fig, ax = plt.subplots()
+
+    ax.bar(x_pos, freqs, align='center', alpha=0.5)
+    ax.set_ylabel('Frequency')
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels(genes)
+    ax.set_xlabel('Height')
+    ax.yaxis.grid(True)
+    # Save the figure and show
+    plt.tight_layout()
+    plt.show()
+    display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many types of initial populations as possible. "))
+
 def initialize_map(sparseness_of_map, size_of_map, number_of_groups):
     the_map = np.zeros((size_of_map, size_of_map))    
     for i in range(0, size_of_map):
