@@ -102,13 +102,13 @@ def choose_subject(option):
          display(Markdown("The algorithm terminates if the population has converged (does not produce offspring which are significantly different from the previous generation). Then it is said that the genetic algorithm has provided a set of solutions to our problem."))
          display(Markdown("#### <span style='color:blue'>2. Let's Put Everything Together to Design the Best Routes for the Map!"))
          interact_manual(solve_map,
-                         sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.99, description='Spareness: ', style=style),
-                         size_of_map=widgets.IntSlider(min=1, max=20, step=1, value=20, description='Size: ', style=style),
-                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=9, description='Number of Groups: ', style=style),
-                         population_size=widgets.IntSlider(min=1, max=5, step=1, value=5, description='Population Size: ', style=style),
-                         number_of_iterations=widgets.IntSlider(min=100, max=500, step=1, value=500, description='# Iterations: ', style=style),
-                         number_of_couples=widgets.IntSlider(min=1, max=10, step=1, value=10, description='Size: ', style=style),
-                         number_of_winners_to_keep=widgets.IntSlider(min=1, max=5, step=1, value=1, description='# Winners: ', style=style),
+                         sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.95, description='Spareness: ', style=style),
+                         size_of_map=widgets.IntSlider(min=1, max=2000, step=1, value=1000, description='Size: ', style=style),
+                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Number of Groups: ', style=style),
+                         population_size=widgets.IntSlider(min=1, max=50, step=1, value=30, description='Population Size: ', style=style),
+                         number_of_iterations=widgets.IntSlider(min=100, max=5000, step=1, value=1000, description='# Iterations: ', style=style),
+                         number_of_couples=widgets.IntSlider(min=1, max=10, step=1, value=9, description='Size: ', style=style),
+                         number_of_winners_to_keep=widgets.IntSlider(min=1, max=5, step=1, value=2, description='# Winners: ', style=style),
                          mutation_probability=widgets.FloatSlider(min=0.01, max=1, step=0.01, value=0.05, description='Mutation Probability: ', style=style));
     elif option == 'Math':
          display(Markdown("### <span style='color:blue'>MATH FOCUS SELECTED"))
@@ -165,16 +165,88 @@ proportions of a stick ungulate are as follows:"""))
          display(Markdown("In this section, you will define the characteristics of an initial population of stick ungulates that will inhabit each of your three environments. The height of the stick ungulates will be determined by two alleles and . Using the appropriate sliders below specify the heights that are determined by each phenotype. Next the appropriate sliders below specify the initial frequency of each allele. Once you have set the heights that are determined by each phenotype and the initial frequency of each allele a table of detailing your population will be outputted. The table will identify the three genotypes in your population, their frequency, corresponding heights and fitness in each of the three environments. Population averages will also be reported."))
          display(Markdown("<span style='color:blue'>Phenotypes"))
          interact_manual(generation,
-                         a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081', style=style),
-                         b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - b\u2081', style=style),
-                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - c\u2081', style=style),
+                         a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment - a\u2081', style=style),
+                         b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment - b\u2081', style=style),
+                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment - c\u2081', style=style),
                          a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
                          b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
                          c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
          display(Markdown("**Modelling Natural Selection**"))
+         display(Markdown("In this section you will track the evolution of your stick ungulates as they evolve in each environment over 10 generations. The code to do so has already been set up and all you have to do is run it.  For the first generation, the code will output the various calculations so that you can follow the steps of our model.  For generations 2 to 10, the code will simply output a table that reports the frequency of each allele, the frequency of each phenotype, the average fitness of the population and the average height of the population."))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         interact_manual(natural_selection,
+                         a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081',
+                                             style=style),
+                         b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - b\u2081',
+                                             style=style),
+                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - c\u2081',
+                                             style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
 
     elif option == 'Physics':
          display(Markdown("### <span style='color:blue'>PHYSICS FOCUS SELECTED"))
+
+def natural_selection(a, b, c, a1, b1, c1):
+    from IPython.display import HTML, display
+    freq_AA = 'p\u00b2 = ' + '{0:.3g}'.format(a1/10 * a1/10)
+    freq_Aa = 'p(1-p) = ' + '{0:.3g}'.format(b1/10 * (1 - b1/10))
+    freq_aa = '(1 - p)\u00b2 = ' + '{0:.3g}'.format((1-c1/10) * (1-c1/10))
+    fitness_AA = 'w\u2081' + '(xAA) = ' + '{0:.3g}'.format(a * a1 * a1 + b * a1 + c)
+    fitness_Aa = 'w\u2081' + '(xAa) = ' + '{0:.3g}'.format(a * b1 * b1 + b * b1 + c)
+    fitness_aa = 'w\u2081' + '(xaa) = ' + '{0:.3g}'.format(a * c1 * c1 + b * c1 + c)
+    display(Markdown("In the first generation, we have the frequency and fitness of each phenotype:"))
+    data_generation_1 = [['Phenotype', 'Frequency', 'Fitness'],
+            ['AA', freq_AA, fitness_AA],
+            ['Aa', freq_Aa, fitness_Aa],
+            ['aa', freq_aa, fitness_aa],
+            ]
+    display(HTML(
+        '<table><tr>{}</tr></table>'.format(
+            '</tr><tr>'.join(
+                '<td>{}</td>'.format('</td><td>'.join(str(_) for _ in row)) for row in data_generation_1)
+        )
+    ))
+    display(Markdown("The average fitness of the population then is the fitness of each phonotype weighted by their frequency."))
+    w1 = 'W\u2081 = ' + 'p\u00b2'
+    print(w1)
+    data = [['Generation', 'Frequency (A)', 'Frequency (a)', 'Frequency (AA)', 'Frequency (Aa)', 'Frequency (aa)', ],
+            ['1', freq_AA, fitness_AA],
+            ['2', freq_Aa, fitness_Aa],
+            ['3', freq_aa, fitness_aa],
+            ['4', freq_AA, fitness_AA],
+            ['5', freq_Aa, fitness_Aa],
+            ['6', freq_aa, fitness_aa],
+            ['7', freq_AA, fitness_AA],
+            ['8', freq_Aa, fitness_Aa],
+            ['9', freq_aa, fitness_aa],
+            ['10', freq_aa, fitness_aa],
+            ]
+    display(Markdown("#### <span style='color:blue'>Table"))
+    display(HTML(
+        '<table><tr>{}</tr></table>'.format(
+            '</tr><tr>'.join(
+                '<td>{}</td>'.format('</td><td>'.join(str(_) for _ in row)) for row in data)
+        )
+    ))
+    display(Markdown("#### <span style='color:blue'>Phenotypic Distribution"))
+    genes = ['AA', 'Aa', 'aa']
+    x_pos = np.arange(len(genes))
+    freqs = [a1/10 * a1/10, b1/10 * (1 - b1/10), (1-c1/10) * (1-c1/10)]
+    # Build the plot
+    fig, ax = plt.subplots()
+
+    ax.bar(x_pos, freqs, align='center', alpha=0.5)
+    ax.set_ylabel('Frequency')
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels(genes)
+    ax.set_xlabel('Height')
+    ax.yaxis.grid(True)
+    # Save the figure and show
+    plt.tight_layout()
+    plt.show()
+    display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many types of initial populations as possible. "))
 
 def generation(a, b, c, a1, b1, c1):
     from IPython.display import HTML, display
@@ -287,7 +359,7 @@ def solve_map(sparseness_of_map, size_of_map, population_size, number_of_iterati
         last_distance = distance
         
     # plot the results
-        plot_best(the_map, route, iteration_number)
+        #plot_best(the_map, route, iteration_number)
 def plot_best(the_map, route, iteration_number):
     ax = sns.heatmap(the_map)
 
