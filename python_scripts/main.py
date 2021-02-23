@@ -60,13 +60,16 @@ def choose_subject(option):
             z1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Thickness of the window: Z(m)', style=style));
 
          display(Markdown("<span style='color:red'><u>Insulation (thickness of wall):</u>"))
-         display(Markdown("<br> *(Display only one wall) - Image from Pulp team*"))
+         #display(Markdown("<br> *(Display only one wall) - Image from Pulp team*"))
+         display(HTML("""<img src="./images/wall.jpg" width="40%" height="40%">"""))
 
          display(Markdown("<span style='color:red'><u>Insulation (glass specification):</u>"))
-         display(Markdown("<br> *(Display only one wall) - Image from Pulp team*"))
+         #display(Markdown("<br> *(Display only one wall) - Image from Pulp team*"))
+         display(HTML("""<img src="./images/glass_insulation.jpg" width="40%" height="40%">"""))
 
          display(Markdown("<span style='color:red'><u>Insulation (roof specification):</u>"))
-         display(Markdown("<br> *(Display building with shaded roof) - Image from Pulp team*"))
+         #display(Markdown("<br> *(Display building with shaded roof) - Image from Pulp team*"))
+         display(HTML("""<img src="./images/roof.jpg" width="40%" height="40%">"""))
 
          display(Markdown("#### <span style='color:blue'><u>Better Building Calculations<u>"))
          display(Markdown("#### <span style='color:red'>Cost to build ($):"))
@@ -85,13 +88,14 @@ def choose_subject(option):
          display(Markdown("### <span style='color:blue'>BIOLOGY FOCUS SELECTED"))
 
     elif option == 'Computer Science':
-         display(Markdown("### <span style='color:blue'>COMPUTER SCIENCE FOCUS SELECTED"))
-         display(Markdown("#### <span style='color:red'>Challenge: Design the routes in the map to minimize the number of steps and the distance we need to take from one point to another."))
+         display(Markdown("### <span style='color:blue'>SELECTED: COMPUTER SCIENCE FOCUS ON DESIGN FOR FORM AND FUNCTION"))
+         display(Markdown('A Genetic algorithm (GA) is a set of instructions (algorithm) to a computer, inspired by the evolutionary process of natural selection, that identify optimal solutions to fit a goal (fitness function).'))
+         display(Markdown("#### <span style='color:red'>Challenge: Design a GA to find routes from top left corner to bottom right corner on the map, avoiding the blocks.  We want to minimize the number of steps in the route and the route’s distance."))
          display(Markdown("#### <span style='color:blue'>1. Let's Initialize the Map!"))
          interact_manual(initialize_map,
-                         sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.99, description='Spareness: ', style=style),
-                         size_of_map=widgets.IntSlider(min=1, max=20, step=1, value=20, description='Size: ', style=style),
-                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=9, description='Number of Groups: ', style=style));
+                         sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.95, description='Spareness: ', style=style),
+                         size_of_map=widgets.IntSlider(min=1, max=2000, step=1, value=1000, description='Size: ', style=style),
+                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Number of Groups: ', style=style));
          #display(Markdown("#### <span style='color:blue'>2. Let's Put Everything Together to Design the Best Routes in the Map!"))
          display(Markdown("After initializing the map, to solve the challenge, we need to apply genetic algorithm which includes five phases:"))
          display(Markdown("* Initial Population: The process begins with a set of individuals which is called a Population. Each individual is a solution to the problem you want to solve. "))
@@ -107,7 +111,7 @@ def choose_subject(option):
                          number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Number of Groups: ', style=style),
                          population_size=widgets.IntSlider(min=1, max=50, step=1, value=30, description='Population Size: ', style=style),
                          number_of_iterations=widgets.IntSlider(min=100, max=5000, step=1, value=1000, description='# Iterations: ', style=style),
-                         number_of_couples=widgets.IntSlider(min=1, max=10, step=1, value=9, description='Size: ', style=style),
+                         number_of_couples=widgets.IntSlider(min=1, max=10, step=1, value=9, description='Crossover factor: ', style=style),
                          number_of_winners_to_keep=widgets.IntSlider(min=1, max=5, step=1, value=2, description='# Winners: ', style=style),
                          mutation_probability=widgets.FloatSlider(min=0.01, max=1, step=0.01, value=0.05, description='Mutation Probability: ', style=style));
     elif option == 'Math':
@@ -316,7 +320,7 @@ def solve_map(sparseness_of_map, size_of_map, population_size, number_of_iterati
     # create the starting population
     population = create_starting_population(population_size, the_map)
 
-    last_distance = 1000000000
+    last_distance = 10000
     # for a large number of iterations do:
         
     for i in range(0,number_of_iterations):
@@ -328,10 +332,12 @@ def solve_map(sparseness_of_map, size_of_map, population_size, number_of_iterati
         best = population[np.argmin(scores)]
         number_of_moves = len(best)
         distance = fitness(best, the_map)
+        if i == number_of_iterations:
+            print('This is the best solution for the stimulation. The challenge has been completed')  # the end
         if distance != last_distance:
             print('Iteration %i: Best so far is %i steps for a distance of %f' % (i, number_of_moves, distance))
+            print('Looking for a better solution...')
             plot_best(the_map, best, i)
-
         
         # allow members of the population to breed based on their relative score; 
             # i.e., if their score is higher they're more likely to breed
@@ -357,9 +363,8 @@ def solve_map(sparseness_of_map, size_of_map, population_size, number_of_iterati
         population = copy.deepcopy(new_population)
                 
         last_distance = distance
-        
+
     # plot the results
-        #plot_best(the_map, route, iteration_number)
 def plot_best(the_map, route, iteration_number):
     ax = sns.heatmap(the_map)
 

@@ -1,0 +1,11 @@
+Explain in further what each parameter (spareness) means 
+Rename "Run Interact" to "Run" 
+remove the right scale in computer science module
+make the default value for the initialization & the solving challenge parameters same
+
+WISH LIST: 
+Can we make the dot/ line in the line blue?
+Can we make the display window bigger? 
+
+Architecture:
+Can we rmeove the diagonal line? 
