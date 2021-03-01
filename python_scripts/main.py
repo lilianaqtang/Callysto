@@ -90,17 +90,22 @@ def choose_subject(option):
     elif option == 'Computer Science':
          display(Markdown("### <span style='color:blue'>SELECTED: COMPUTER SCIENCE FOCUS ON DESIGN FOR FORM AND FUNCTION"))
          display(Markdown('A Genetic algorithm (GA) is a set of instructions (algorithm) to a computer, inspired by the evolutionary process of natural selection, that identify optimal solutions to fit a goal (fitness function).'))
-         display(Markdown("#### <span style='color:red'>Challenge: Design a GA to find routes from top left corner to bottom right corner on the map, avoiding the blocks.  We want to minimize the number of steps in the route and the route’s distance."))
-         display(Markdown("#### <span style='color:blue'>1. Let's Initialize the Map!"))
+         display(HTML("""A GA is used in optimization problems, when the possible solution(s) are complex and numerous and the best one needs to be found. E.g. designs for buildings; <a href="https://en.wikipedia.org/wiki/Evolved_antenna" target="_blank">NASAs ST5 radio antenna design</a>; models of human movement. The best solution (fittest) is defined by the problem being solved e.g. building, cost, desirability and sustainability to build and operate; antenna range of transmission; similarity to human movement."""))
+         display(Markdown('The GA takes a set of options (each option has a chromosome  which is a phenotype descriptor),  for solutions to a problem (population) competes the options against the fitness function to find a winner(s). The winner(s) and new options, created through a process of change of their description (mutation and crossover), create a next set of options  (a generation) and the process is repeated. The process stops (terminates) after the fitness criterion is satisfied OR after a number of tries (iterations).'))
+         display(Markdown(
+             "#### <span style='color:red'>Challenge: Design a GA to find routes from top left corner to bottom right corner on the map, avoiding the blocks.  We want to minimize the number of steps in the route and the route’s distance."))
+         display(Markdown("#### <span style='color:blue'>First let's Initialize the Map!"))
+         display(Markdown('This map represents the space we are going to look for our route in.  It’s a square space with blocks that the route must avoid. We can define how large the space is, how many groups of blocks it has and how densely the block groups are arranged.'))
          interact_manual(initialize_map,
                          sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.95, description='Spareness: ', style=style),
                          size_of_map=widgets.IntSlider(min=1, max=2000, step=1, value=1000, description='Size: ', style=style),
                          number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Number of Groups: ', style=style));
          #display(Markdown("#### <span style='color:blue'>2. Let's Put Everything Together to Design the Best Routes in the Map!"))
-         display(Markdown("After initializing the map, to solve the challenge, we need to apply genetic algorithm which includes five phases:"))
-         display(Markdown("* Initial Population: The process begins with a set of individuals which is called a Population. Each individual is a solution to the problem you want to solve. "))
-         display(Markdown("* Fitness Funciton: The fitness function determines how fit an individual is (the ability of an individual to compete with other individuals). It gives a fitness score to each individual. The probability that an individual will be selected for reproduction is based on its fitness score."))
-         display(Markdown("* Selection: The idea of selection phase is to select the fittest individuals and let them pass their genes to the next generation."))
+         display(Markdown("After initializing the map, we need to apply our genetic algorithm to solve the route finding problem. The steps to do this are:"))
+         display(Markdown("I.  Build the initial population: The process begins with a set of individuals which is called a Population. Each individual is a solution to the problem we want to solve. "))
+         display(Markdown("II. Apply the fitness function: The fitness function determines how fit any individual solution is to compete with other individuals. Applying the function to the individual gives  it a fitness score. The probability that an individual will be selected as a winner is based on its fitness score."))
+         display(Markdown("III. Make the winner(s) selection: The idea of selection phase is to select the fittest individuals from a population and let them pass their genes to the next generation."))
+         display(Markdown("IV. Change up the population:"))
          display(Markdown("* Crossover: Crossover is the most significant phase in a genetic algorithm. For each pair of parents to be mated, a crossover point is chosen at random from within the genes. Offspring are created by exchanging the genes of parents among themselves until the crossover point is reached."))
          display(Markdown("* Mutation: In certain new offspring formed, some of their genes can be subjected to a mutation with a low random probability. This implies that some of the bits in the bit string can be flipped."))
          display(Markdown("The algorithm terminates if the population has converged (does not produce offspring which are significantly different from the previous generation). Then it is said that the genetic algorithm has provided a set of solutions to our problem."))
