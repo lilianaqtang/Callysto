@@ -218,8 +218,19 @@ def natural_selection(a, b, c, a1, b1, c1):
         )
     ))
     display(Markdown("The average fitness of the population then is the fitness of each phonotype weighted by their frequency."))
-    w1 = 'W\u2081 = ' + 'p\u00b2'
+    w1_calculation = (a1 / 10 * a1 / 10) * (a * a1 * a1 + b * a1 + c) + (b1 / 10 * (1 - b1 / 10)) * (a * b1 * b1 + b * b1 + c) + ((1 - c1 / 10) * (1 - c1 / 10)) * (a * c1 * c1 + b * c1 + c)
+    w1 = 'W\u2081 = ' + 'p\u00b2' + 'w\u2081' + 'x(AA) + p(1-p)' + 'w\u2081' + 'x(Aa) + ' + '(1-p)\u00b2' + 'w\u2081(x(aa)) = ' + str(w1_calculation)
     print(w1)
+    display(Markdown("The average fitness of allele A is:"))
+    wA_calculation = (a1 / 10 * a1 / 10) * (a * a1 * a1 + b * a1 + c) + a1 / 10 
+    wA = 'W(A) = ' + '(' + 'p\u00b2' + 'w(AA) + p(1-p)w(Aa))'
+    print(wA)
+    display(Markdown("The frequency of A in next generation is:"))
+    p = "p' = W(A)/W = " + "((1 - p)\u00b2" + "w(aa) + " + "p(1-p)w(Aa))/W"
+    print(p)
+
+
+
     data = [['Generation', 'Frequency (A)', 'Frequency (a)', 'Frequency (AA)', 'Frequency (Aa)', 'Frequency (aa)', ],
             ['1', freq_AA, fitness_AA],
             ['2', freq_Aa, fitness_Aa],
