@@ -35,7 +35,8 @@ def choose_subject(option):
     intro_text=widgets.HTML(value=" ")
     if option == 'Architecture':
          display(Markdown("### <span style='color:blue'>ARCHITECTURE FOCUS SELECTED"))
-         display(Markdown("<br> *Introductory blurb about architecture from architecture team. Use a graphic from Pulp team.*"))
+         display(Markdown("In this notebook we explore the principles of modelling building envelopes and calculating key energy factors. The calculations performed inform sustainable design by considering how changes to a building’s variables such as its dimensions, floor area and volume,  its window to wall surface ratio, etc., impact the buildings need for energy and ability to retain energy. "))
+         display(Markdown("Experiment with changing the dimensions of a simple building and observe their impact on the building’s area and volume, energy use and the building’s cost. Notice even in this simple model there are a seemingly endless number of ways to design a building, with each design differing in its need for and ability to retain energy as well as its cost. "))
          display(Markdown("#### <span style='color:blue'><u>Variables in architecture</u>"))
          display(Markdown("<span style='color:red'><u>Select building dimensions:</u>"))
          interact_manual(construct_building,
@@ -57,7 +58,7 @@ def choose_subject(option):
             z=widgets.FloatSlider(min=1, max=20, step=1, value=1, description='Height: Z(m)', style=style),
             x1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Length of the window: X(m)', style=style),
             y1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Height of the window: Y(m)', style=style),
-            z1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Thickness of the window: Z(m)', style=style));
+            z1=widgets.FloatSlider(min=1, max=10, step=1, value=1, description='Thickness of the window: Z(cm)', style=style));
 
          display(Markdown("<span style='color:red'><u>Insulation (thickness of wall):</u>"))
          #display(Markdown("<br> *(Display only one wall) - Image from Pulp team*"))
@@ -84,8 +85,6 @@ def choose_subject(option):
          display(Markdown("The goal in designing a sustainable building should be that the envelope is capable of keeping occupants comfortable and healthy in the middle of winter without the need for extra heating. Interestingly, Canada has been involved in research into how these buildings should be designed and <a href='https://www.src.sk.ca/blog/closer-look-saskatchewan-conservation-house-and-four-others' target='_blank'>some built examples </a> show that this can be achieved even in a cold winter prairie climate."))
          display(Markdown("However, despite proof that this technology works, it is unfortunate that many buildings that are built in Canada today still require large amounts of energy to keep them comfortable and this results in greenhouse gas emissions, climate change as well as high costs for building owners."))
          display(Markdown("The goal of this learning tool is provide a first step in education of how simple steps can make significant results in lower the need for heating energy and improving the global environment and comfort for building occupants."))
-    elif option == 'Biology':
-         display(Markdown("### <span style='color:blue'>BIOLOGY FOCUS SELECTED"))
 
     elif option == 'Computer Science':
          display(Markdown("### <span style='color:blue'>SELECTED: COMPUTER SCIENCE FOCUS ON DESIGN FOR FORM AND FUNCTION"))
@@ -95,11 +94,11 @@ def choose_subject(option):
          display(Markdown(
              "#### <span style='color:red'>Challenge: Design a GA to find routes from top left corner to bottom right corner on the map, avoiding the blocks.  We want to minimize the number of steps in the route and the route’s distance."))
          display(Markdown("#### <span style='color:blue'>First let's Initialize the Map!"))
-         display(Markdown('This map represents the space we are going to look for our route in.  It’s a square space with blocks that the route must avoid. We can define how large the space is, how many groups of blocks it has and how densely the block groups are arranged.'))
+         display(Markdown('This map represents the space we are going to look for our route in. It’s a square space with blocks that the route must avoid. We can define how large the space is and how densely the blocks are arranged. Density is controlled by two factors, the distance between the blocks (closeness) and blocks to no-blocks ratio (spareness)'))
          interact_manual(initialize_map,
                          sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.95, description='Spareness: ', style=style),
                          size_of_map=widgets.IntSlider(min=1, max=2000, step=1, value=1000, description='Size: ', style=style),
-                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Number of Groups: ', style=style));
+                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Closeness of Blocks (1: spread out – 9: close together): ', style=style));
          #display(Markdown("#### <span style='color:blue'>2. Let's Put Everything Together to Design the Best Routes in the Map!"))
          display(Markdown("After initializing the map, we need to apply our genetic algorithm to solve the route finding problem. The steps to do this are:"))
          display(Markdown("I.  Build the initial population: The process begins with a set of individuals which is called a Population. Each individual is a solution to the problem we want to solve. "))
@@ -113,7 +112,7 @@ def choose_subject(option):
          interact_manual(solve_map,
                          sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.95, description='Spareness: ', style=style),
                          size_of_map=widgets.IntSlider(min=1, max=2000, step=1, value=1000, description='Size: ', style=style),
-                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Number of Groups: ', style=style),
+                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Closeness of Blocks (1: spread out – 9: close together): ', style=style),
                          population_size=widgets.IntSlider(min=1, max=50, step=1, value=30, description='Population Size: ', style=style),
                          number_of_iterations=widgets.IntSlider(min=100, max=5000, step=1, value=1000, description='# Iterations: ', style=style),
                          number_of_couples=widgets.IntSlider(min=1, max=10, step=1, value=9, description='Crossover factor: ', style=style),
@@ -194,8 +193,6 @@ proportions of a stick ungulate are as follows:"""))
                          b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
                          c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
 
-    elif option == 'Physics':
-         display(Markdown("### <span style='color:blue'>PHYSICS FOCUS SELECTED"))
 
 def natural_selection(a, b, c, a1, b1, c1):
     from IPython.display import HTML, display
@@ -223,10 +220,10 @@ def natural_selection(a, b, c, a1, b1, c1):
     print(w1)
     display(Markdown("The average fitness of allele A is:"))
     wA_calculation = (a1 / 10 * a1 / 10) * (a * a1 * a1 + b * a1 + c) + a1 / 10 
-    wA = 'W(A) = ' + '(' + 'p\u00b2' + 'w(AA) + p(1-p)w(Aa))'
+    wA = 'W(A) = ' + '(' + 'p\u00b2' + 'w(AA) + p(1-p)w(Aa)) = ' + str(wA_calculation)
     print(wA)
     display(Markdown("The frequency of A in next generation is:"))
-    p = "p' = W(A)/W = " + "((1 - p)\u00b2" + "w(aa) + " + "p(1-p)w(Aa))/W"
+    p = "p' = W(A)/W = " + "((1 - p)\u00b2" + "w(aa) + " + "p(1-p)w(Aa))/W = " + str(wA_calculation/w1_calculation)
     print(p)
 
 
@@ -250,23 +247,23 @@ def natural_selection(a, b, c, a1, b1, c1):
                 '<td>{}</td>'.format('</td><td>'.join(str(_) for _ in row)) for row in data)
         )
     ))
-    display(Markdown("#### <span style='color:blue'>Phenotypic Distribution"))
-    genes = ['AA', 'Aa', 'aa']
-    x_pos = np.arange(len(genes))
-    freqs = [a1/10 * a1/10, b1/10 * (1 - b1/10), (1-c1/10) * (1-c1/10)]
+    #display(Markdown("#### <span style='color:blue'>Phenotypic Distribution"))
+    #genes = ['AA', 'Aa', 'aa']
+    #x_pos = np.arange(len(genes))
+    #freqs = [a1/10 * a1/10, b1/10 * (1 - b1/10), (1-c1/10) * (1-c1/10)]
     # Build the plot
-    fig, ax = plt.subplots()
+    #fig, ax = plt.subplots()
 
-    ax.bar(x_pos, freqs, align='center', alpha=0.5)
-    ax.set_ylabel('Frequency')
-    ax.set_xticks(x_pos)
-    ax.set_xticklabels(genes)
-    ax.set_xlabel('Height')
-    ax.yaxis.grid(True)
+    #ax.bar(x_pos, freqs, align='center', alpha=0.5)
+    #ax.set_ylabel('Frequency')
+    #ax.set_xticks(x_pos)
+    #ax.set_xticklabels(genes)
+    #ax.set_xlabel('Height')
+    #ax.yaxis.grid(True)
     # Save the figure and show
-    plt.tight_layout()
-    plt.show()
-    display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many types of initial populations as possible. "))
+    #plt.tight_layout()
+    #plt.show()
+    #display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many types of initial populations as possible. "))
 
 def generation(a, b, c, a1, b1, c1):
     from IPython.display import HTML, display
