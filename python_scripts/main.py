@@ -98,7 +98,7 @@ def choose_subject(option):
          interact_manual(initialize_map,
                          sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.95, description='Spareness: ', style=style),
                          size_of_map=widgets.IntSlider(min=1, max=2000, step=1, value=1000, description='Size: ', style=style),
-                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Closeness of Blocks (1: spread out – 9: close together): ', style=style));
+                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Closeness of Blocks: ', style=style));
          #display(Markdown("#### <span style='color:blue'>2. Let's Put Everything Together to Design the Best Routes in the Map!"))
          display(Markdown("After initializing the map, we need to apply our genetic algorithm to solve the route finding problem. The steps to do this are:"))
          display(Markdown("I.  Build the initial population: The process begins with a set of individuals which is called a Population. Each individual is a solution to the problem we want to solve. "))
@@ -112,7 +112,7 @@ def choose_subject(option):
          interact_manual(solve_map,
                          sparseness_of_map=widgets.FloatSlider(min=0.05, max=0.99, step=0.01, value=0.95, description='Spareness: ', style=style),
                          size_of_map=widgets.IntSlider(min=1, max=2000, step=1, value=1000, description='Size: ', style=style),
-                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Closeness of Blocks (1: spread out – 9: close together): ', style=style),
+                         number_of_groups=widgets.IntSlider(min=1, max=9, step=1, value=1, description='Closeness of Blocks: ', style=style),
                          population_size=widgets.IntSlider(min=1, max=50, step=1, value=30, description='Population Size: ', style=style),
                          number_of_iterations=widgets.IntSlider(min=100, max=5000, step=1, value=1000, description='# Iterations: ', style=style),
                          number_of_couples=widgets.IntSlider(min=1, max=10, step=1, value=9, description='Crossover factor: ', style=style),
@@ -181,7 +181,7 @@ proportions of a stick ungulate are as follows:"""))
                          c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
          display(Markdown("**Modelling Natural Selection**"))
          display(Markdown("In this section you will track the evolution of your stick ungulates as they evolve in each environment over 10 generations. The code to do so has already been set up and all you have to do is run it.  For the first generation, the code will output the various calculations so that you can follow the steps of our model.  For generations 2 to 10, the code will simply output a table that reports the frequency of each allele, the frequency of each phenotype, the average fitness of the population and the average height of the population."))
-         display(Markdown("### <span style='color:blue'>Environment 1"))
+         #display(Markdown("### <span style='color:blue'>Environment 1"))
          interact_manual(natural_selection,
                          a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081',
                                              style=style),
@@ -216,29 +216,65 @@ def natural_selection(a, b, c, a1, b1, c1):
     ))
     display(Markdown("The average fitness of the population then is the fitness of each phonotype weighted by their frequency."))
     w1_calculation = (a1 / 10 * a1 / 10) * (a * a1 * a1 + b * a1 + c) + (b1 / 10 * (1 - b1 / 10)) * (a * b1 * b1 + b * b1 + c) + ((1 - c1 / 10) * (1 - c1 / 10)) * (a * c1 * c1 + b * c1 + c)
-    w1 = 'W\u2081 = ' + 'p\u00b2' + 'w\u2081' + 'x(AA) + p(1-p)' + 'w\u2081' + 'x(Aa) + ' + '(1-p)\u00b2' + 'w\u2081(x(aa)) = ' + str(w1_calculation)
+    w1 = 'W\u2081 = ' + 'p\u00b2' + 'w\u2081' + 'x(AA) + p(1-p)' + 'w\u2081' + 'x(Aa) + ' + '(1-p)\u00b2' + 'w\u2081(x(aa)) = ' + '{0:.3g}'.format(w1_calculation)
     print(w1)
     display(Markdown("The average fitness of allele A is:"))
     wA_calculation = (a1 / 10 * a1 / 10) * (a * a1 * a1 + b * a1 + c) + a1 / 10 
-    wA = 'W(A) = ' + '(' + 'p\u00b2' + 'w(AA) + p(1-p)w(Aa)) = ' + str(wA_calculation)
+    wA = 'W(A) = ' + '(' + 'p\u00b2' + 'w(AA) + p(1-p)w(Aa)) = ' + '{0:.3g}'.format(wA_calculation)
     print(wA)
     display(Markdown("The frequency of A in next generation is:"))
-    p = "p' = W(A)/W = " + "((1 - p)\u00b2" + "w(aa) + " + "p(1-p)w(Aa))/W = " + str(wA_calculation/w1_calculation)
+    p = "p' = W(A)/W = " + "((1 - p)\u00b2" + "w(aa) + " + "p(1-p)w(Aa))/W = " + '{0:.3g}'.format(wA_calculation/w1_calculation)
     print(p)
+    wAA = a * a1 * a1 + b * a1 + c
+    wAa = a * b1 * b1 + b * b1 + c
+    waa = a * c1 * c1 + b * c1 + c
+    freqA_2 = wA_calculation/w1_calculation
+    w2_calculation = cal_fitness_function(wAA, wAa,waa,wA_calculation/w1_calculation)
+    wA2_calculation = cal_A_fitness(wA_calculation/w1_calculation,wAA, wAa)
 
+    freqA_3 = wA2_calculation/w2_calculation
+    w3_calculation = cal_fitness_function(wAA,wAa, waa,wA2_calculation/w2_calculation)
+    wA3_calculation = cal_A_fitness(wA2_calculation/w2_calculation, wAA, wAa)
 
+    freqA_4 = wA3_calculation/w3_calculation
+    w4_calculation = cal_fitness_function(wAA,wAa,waa,wA3_calculation/w3_calculation)
+    wA4_calculation = cal_A_fitness(wA3_calculation/w3_calculation, wAA, wAa)
 
-    data = [['Generation', 'Frequency (A)', 'Frequency (a)', 'Frequency (AA)', 'Frequency (Aa)', 'Frequency (aa)', ],
-            ['1', freq_AA, fitness_AA],
-            ['2', freq_Aa, fitness_Aa],
-            ['3', freq_aa, fitness_aa],
-            ['4', freq_AA, fitness_AA],
-            ['5', freq_Aa, fitness_Aa],
-            ['6', freq_aa, fitness_aa],
-            ['7', freq_AA, fitness_AA],
-            ['8', freq_Aa, fitness_Aa],
-            ['9', freq_aa, fitness_aa],
-            ['10', freq_aa, fitness_aa],
+    freqA_5 = wA4_calculation/w4_calculation
+    w5_calculation = cal_fitness_function(wAA, wAA,waa,wA4_calculation/w4_calculation)
+    wA5_calculation = cal_A_fitness(wA4_calculation/w4_calculation, wAA, wAa)
+
+    freqA_6 = wA5_calculation / w5_calculation
+    w6_calculation = cal_fitness_function(wAA, wAa, waa, wA5_calculation / w5_calculation)
+    wA6_calculation = cal_A_fitness(wA5_calculation / w5_calculation, wAA, wAa)
+
+    freqA_7 = wA6_calculation / w6_calculation
+    w7_calculation = cal_fitness_function(wAA, wAa, waa, wA6_calculation / w6_calculation)
+    wA7_calculation = cal_A_fitness(wA6_calculation / w6_calculation, wAA, wAa)
+
+    freqA_8 = wA7_calculation / w7_calculation
+    w8_calculation = cal_fitness_function(wAA, wAA, waa, wA7_calculation / w7_calculation)
+    wA8_calculation = cal_A_fitness(wA7_calculation / w7_calculation, wAA, wAa)
+
+    freqA_9 = wA8_calculation / w8_calculation
+    w9_calculation = cal_fitness_function(wAA, wAa, waa, wA8_calculation / w8_calculation)
+    wA9_calculation = cal_A_fitness(wA8_calculation / w8_calculation, wAA, wAa)
+
+    freqA_10 = wA9_calculation / w9_calculation
+    w10_calculation = cal_fitness_function(wAA, wAA, waa, wA9_calculation / w9_calculation)
+    wA10_calculation = cal_A_fitness(wA9_calculation / w9_calculation, wAA, wAa)
+
+    data = [['Generation', 'Frequency (A)', 'Frequency (a)', 'Frequency (AA)', 'Frequency (Aa)', 'Frequency (aa)', 'Fitness'],
+            ['1', '{0:.3g}'.format(a1/10), '{0:.3g}'.format(1 - a1/10), '{0:.3g}'.format(a1/10 * a1/10), '{0:.3g}'.format(b1/10 * (1 - b1/10)), '{0:.3g}'.format((1-c1/10) * (1-c1/10)), '{0:.3g}'.format(w1_calculation)],
+            ['2', '{0:.3g}'.format(freqA_2), '{0:.3g}'.format(1-freqA_2), '{0:.3g}'.format(freqA_2*freqA_2), '{0:.3g}'.format(freqA_2*(1-freqA_2)), '{0:.3g}'.format((1-freqA_2)*(1-freqA_2)), '{0:.3g}'.format(w2_calculation)],
+            ['3', '{0:.3g}'.format(freqA_3), '{0:.3g}'.format(1-freqA_3), '{0:.3g}'.format(freqA_3*freqA_3), '{0:.3g}'.format(freqA_3*(1-freqA_3)), '{0:.3g}'.format((1-freqA_3)*(1-freqA_3)), '{0:.3g}'.format(w3_calculation)],
+            ['4', '{0:.3g}'.format(freqA_4), '{0:.3g}'.format(1-freqA_4), '{0:.3g}'.format(freqA_4*freqA_4), '{0:.3g}'.format(freqA_4*(1-freqA_4)), '{0:.3g}'.format((1-freqA_4)*(1-freqA_4)), '{0:.3g}'.format(w4_calculation)],
+            ['5', '{0:.3g}'.format(freqA_5), '{0:.3g}'.format(1-freqA_5), '{0:.3g}'.format(freqA_5*freqA_5), '{0:.3g}'.format(freqA_5*(1-freqA_5)), '{0:.3g}'.format((1-freqA_5)*(1-freqA_5)), '{0:.3g}'.format(w5_calculation)],
+            ['6', '{0:.3g}'.format(freqA_6), '{0:.3g}'.format(1-freqA_6), '{0:.3g}'.format(freqA_6*freqA_6), '{0:.3g}'.format(freqA_6*(1-freqA_6)), '{0:.3g}'.format((1-freqA_6)*(1-freqA_6)), '{0:.3g}'.format(w6_calculation)],
+            ['7', '{0:.3g}'.format(freqA_7), '{0:.3g}'.format(1-freqA_7), '{0:.3g}'.format(freqA_7*freqA_7), '{0:.3g}'.format(freqA_7*(1-freqA_7)), '{0:.3g}'.format((1-freqA_7)*(1-freqA_7)), '{0:.3g}'.format(w7_calculation)],
+            ['8','{0:.3g}'.format(freqA_8), '{0:.3g}'.format(1-freqA_8), '{0:.3g}'.format(freqA_8*freqA_8), '{0:.3g}'.format(freqA_8*(1-freqA_8)), '{0:.3g}'.format((1-freqA_8)*(1-freqA_8)), '{0:.3g}'.format(w8_calculation)],
+            ['9', '{0:.3g}'.format(freqA_9), '{0:.3g}'.format(1-freqA_9), '{0:.3g}'.format(freqA_9*freqA_9), '{0:.3g}'.format(freqA_9*(1-freqA_9)), '{0:.3g}'.format((1-freqA_9)*(1-freqA_9)), '{0:.3g}'.format(w9_calculation)],
+            ['10', '{0:.3g}'.format(freqA_10), '{0:.3g}'.format(1-freqA_10), '{0:.3g}'.format(freqA_10*freqA_10), '{0:.3g}'.format(freqA_10*(1-freqA_10)), '{0:.3g}'.format((1-freqA_10)*(1-freqA_10)), '{0:.3g}'.format(w10_calculation)],
             ]
     display(Markdown("#### <span style='color:blue'>Table"))
     display(HTML(
@@ -247,23 +283,11 @@ def natural_selection(a, b, c, a1, b1, c1):
                 '<td>{}</td>'.format('</td><td>'.join(str(_) for _ in row)) for row in data)
         )
     ))
-    #display(Markdown("#### <span style='color:blue'>Phenotypic Distribution"))
-    #genes = ['AA', 'Aa', 'aa']
-    #x_pos = np.arange(len(genes))
-    #freqs = [a1/10 * a1/10, b1/10 * (1 - b1/10), (1-c1/10) * (1-c1/10)]
-    # Build the plot
-    #fig, ax = plt.subplots()
 
-    #ax.bar(x_pos, freqs, align='center', alpha=0.5)
-    #ax.set_ylabel('Frequency')
-    #ax.set_xticks(x_pos)
-    #ax.set_xticklabels(genes)
-    #ax.set_xlabel('Height')
-    #ax.yaxis.grid(True)
-    # Save the figure and show
-    #plt.tight_layout()
-    #plt.show()
-    #display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many types of initial populations as possible. "))
+def cal_fitness_function(wAA, wAa, waa, p):
+    return p*p*wAA + p*(1-p)*wAa + (1-p)*(1-p)*waa
+def cal_A_fitness(p,wAA, wAa):
+    return p*p*wAA + p*(1-p)*wAa
 
 def generation(a, b, c, a1, b1, c1):
     from IPython.display import HTML, display

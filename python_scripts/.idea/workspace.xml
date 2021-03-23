@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ff356db-10f6-4ae9-a9e8-af597c659501" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.ipynb_checkpoints/Form &amp; Functions-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../.ipynb_checkpoints/Form &amp; Functions-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Form &amp; Functions.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Form &amp; Functions.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
