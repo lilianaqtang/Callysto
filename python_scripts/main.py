@@ -155,156 +155,210 @@ proportions of a stick ungulate are as follows:"""))
          display(Markdown("In this section, you will define 3 different environments by specifying the resource values of a, b and c using the sliders below. Once you set the slider for the resource values of a, b and c the corresponding fitness function for that environment will be plotted immediately below. Use the graph of the fitness function to refine your selection of the resource values of a, b and c for each environment. In defining the three environments try to create three very different environments as reflected by the shape of the fitness function.  For example, you may wish to study a case in which there is selection for an extreme height, a case where there is selection for an intermediate height and a case where there is selection against an intermediate height."))
          display(Markdown("### <span style='color:blue'>Environment 1"))
          interact_manual(fitness_function,
-                         a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                         b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                         c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
+                         a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2081', style=style),
+                         b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2081', style=style),
+                         c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2081', style=style));
          display(Markdown("### <span style='color:blue'>Environment 2"))
          interact_manual(fitness_function,
-                    a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                    b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                    c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
+                    a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2082', style=style),
+                    b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2082', style=style),
+                    c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2082', style=style));
          display(Markdown("### <span style='color:blue'>Environment 3"))
          interact_manual(fitness_function,
-                         a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                         b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                         c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
+                         a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2083', style=style),
+                         b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2083', style=style),
+                         c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2083', style=style));
          display(Markdown("The environments you specify will remain unchanged over the course of the three trials."))
          display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many variations of environments as possible."))
-         display(Markdown("**Modelling the Population**"))
+         display(Markdown("**Modelling the Population**"))         
          display(Markdown("In this section, you will define the characteristics of an initial population of stick ungulates that will inhabit each of your three environments. The height of the stick ungulates will be determined by two alleles and . Using the appropriate sliders below specify the heights that are determined by each phenotype. Next the appropriate sliders below specify the initial frequency of each allele. Once you have set the heights that are determined by each phenotype and the initial frequency of each allele a table of detailing your population will be outputted. The table will identify the three genotypes in your population, their frequency, corresponding heights and fitness in each of the three environments. Population averages will also be reported."))
-         display(Markdown("<span style='color:blue'>Phenotypes"))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
          interact_manual(generation,
-                         a=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 1 – p\u2081', style=style),
-                         b=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 2 – p\u2082', style=style),
-                         c=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 3 – p\u2083', style=style),
-                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
-                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
-                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
          display(Markdown("**Modelling Natural Selection**"))
          display(Markdown("In this section you will track the evolution of your stick ungulates as they evolve in each environment over 10 generations. The code to do so has already been set up and all you have to do is run it.  For the first generation, the code will output the various calculations so that you can follow the steps of our model.  For generations 2 to 10, the code will simply output a table that reports the frequency of each allele, the frequency of each phenotype, the average fitness of the population and the average height of the population."))
-         #display(Markdown("### <span style='color:blue'>Environment 1"))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
          interact_manual(natural_selection,
-                         a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081',
-                                             style=style),
-                         b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - b\u2081',
-                                             style=style),
-                         c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - c\u2081',
-                                             style=style),
-                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
-                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
-                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
 
-    display(Markdown("**Trial 2.**"))
-    display(Markdown("**Modelling the Environment**"))
-    display(Markdown(
-        "In this section, you will define 3 different environments by specifying the resource values of a, b and c using the sliders below. Once you set the slider for the resource values of a, b and c the corresponding fitness function for that environment will be plotted immediately below. Use the graph of the fitness function to refine your selection of the resource values of a, b and c for each environment. In defining the three environments try to create three very different environments as reflected by the shape of the fitness function.  For example, you may wish to study a case in which there is selection for an extreme height, a case where there is selection for an intermediate height and a case where there is selection against an intermediate height."))
-    display(Markdown("### <span style='color:blue'>Environment 1"))
-    interact_manual(fitness_function,
-                    a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                    b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                    c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
-    display(Markdown("### <span style='color:blue'>Environment 2"))
-    interact_manual(fitness_function,
-                    a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                    b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                    c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
-    display(Markdown("### <span style='color:blue'>Environment 3"))
-    interact_manual(fitness_function,
-                    a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                    b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                    c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
-    display(Markdown("The environments you specify will remain unchanged over the course of the three trials."))
-    display(Markdown(
-        "If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many variations of environments as possible."))
-    display(Markdown("**Modelling the Population**"))
-    display(Markdown(
-        "In this section, you will define the characteristics of an initial population of stick ungulates that will inhabit each of your three environments. The height of the stick ungulates will be determined by two alleles and . Using the appropriate sliders below specify the heights that are determined by each phenotype. Next the appropriate sliders below specify the initial frequency of each allele. Once you have set the heights that are determined by each phenotype and the initial frequency of each allele a table of detailing your population will be outputted. The table will identify the three genotypes in your population, their frequency, corresponding heights and fitness in each of the three environments. Population averages will also be reported."))
-    display(Markdown("<span style='color:blue'>Phenotypes"))
-    interact_manual(generation,
-                    a=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 1 – p\u2081',
-                                          style=style),
-                    b=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 2 – p\u2082',
-                                          style=style),
-                    c=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 3 – p\u2083',
-                                          style=style),
-                    a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
-                    b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
-                    c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
-    display(Markdown("**Modelling Natural Selection**"))
-    display(Markdown(
-        "In this section you will track the evolution of your stick ungulates as they evolve in each environment over 10 generations. The code to do so has already been set up and all you have to do is run it.  For the first generation, the code will output the various calculations so that you can follow the steps of our model.  For generations 2 to 10, the code will simply output a table that reports the frequency of each allele, the frequency of each phenotype, the average fitness of the population and the average height of the population."))
-    # display(Markdown("### <span style='color:blue'>Environment 1"))
-    interact_manual(natural_selection,
-                    a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081',
-                                        style=style),
-                    b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - b\u2081',
-                                        style=style),
-                    c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - c\u2081',
-                                        style=style),
-                    a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
-                    b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
-                    c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
+         display(Markdown("**Trial 2.**"))
+         display(Markdown("**Modelling the Environment**"))
+         display(Markdown("In this section, you will define 3 different environments by specifying the resource values of a, b and c using the sliders below. Once you set the slider for the resource values of a, b and c the corresponding fitness function for that environment will be plotted immediately below. Use the graph of the fitness function to refine your selection of the resource values of a, b and c for each environment. In defining the three environments try to create three very different environments as reflected by the shape of the fitness function.  For example, you may wish to study a case in which there is selection for an extreme height, a case where there is selection for an intermediate height and a case where there is selection against an intermediate height."))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         interact_manual(fitness_function,
+                         a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2081', style=style),
+                         b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2081', style=style),
+                         c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2081', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         interact_manual(fitness_function,
+                    a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2082', style=style),
+                    b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2082', style=style),
+                    c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2082', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         interact_manual(fitness_function,
+                         a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2083', style=style),
+                         b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2083', style=style),
+                         c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2083', style=style));
+         display(Markdown("The environments you specify will remain unchanged over the course of the three trials."))
+         display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many variations of environments as possible."))
+         display(Markdown("**Modelling the Population**"))         
+         display(Markdown("In this section, you will define the characteristics of an initial population of stick ungulates that will inhabit each of your three environments. The height of the stick ungulates will be determined by two alleles and . Using the appropriate sliders below specify the heights that are determined by each phenotype. Next the appropriate sliders below specify the initial frequency of each allele. Once you have set the heights that are determined by each phenotype and the initial frequency of each allele a table of detailing your population will be outputted. The table will identify the three genotypes in your population, their frequency, corresponding heights and fitness in each of the three environments. Population averages will also be reported."))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
 
-    display(Markdown("**Trial 3.**"))
-    display(Markdown("**Modelling the Environment**"))
-    display(Markdown(
-        "In this section, you will define 3 different environments by specifying the resource values of a, b and c using the sliders below. Once you set the slider for the resource values of a, b and c the corresponding fitness function for that environment will be plotted immediately below. Use the graph of the fitness function to refine your selection of the resource values of a, b and c for each environment. In defining the three environments try to create three very different environments as reflected by the shape of the fitness function.  For example, you may wish to study a case in which there is selection for an extreme height, a case where there is selection for an intermediate height and a case where there is selection against an intermediate height."))
-    display(Markdown("### <span style='color:blue'>Environment 1"))
-    interact_manual(fitness_function,
-                    a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                    b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                    c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
-    display(Markdown("### <span style='color:blue'>Environment 2"))
-    interact_manual(fitness_function,
-                    a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                    b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                    c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
-    display(Markdown("### <span style='color:blue'>Environment 3"))
-    interact_manual(fitness_function,
-                    a=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='a\u2081', style=style),
-                    b=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='b\u2081', style=style),
-                    c=widgets.IntSlider(min=-10, max=10, step=1, value=1, description='c\u2081', style=style));
-    display(Markdown("The environments you specify will remain unchanged over the course of the three trials."))
-    display(Markdown(
-        "If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many variations of environments as possible."))
-    display(Markdown("**Modelling the Population**"))
-    display(Markdown(
-        "In this section, you will define the characteristics of an initial population of stick ungulates that will inhabit each of your three environments. The height of the stick ungulates will be determined by two alleles and . Using the appropriate sliders below specify the heights that are determined by each phenotype. Next the appropriate sliders below specify the initial frequency of each allele. Once you have set the heights that are determined by each phenotype and the initial frequency of each allele a table of detailing your population will be outputted. The table will identify the three genotypes in your population, their frequency, corresponding heights and fitness in each of the three environments. Population averages will also be reported."))
-    display(Markdown("<span style='color:blue'>Phenotypes"))
-    interact_manual(generation,
-                    a=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 1 – p\u2081',
-                                          style=style),
-                    b=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 2 – p\u2082',
-                                          style=style),
-                    c=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Freq of A in Env 3 – p\u2083',
-                                          style=style),
-                    a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
-                    b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
-                    c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
-    display(Markdown("**Modelling Natural Selection**"))
-    display(Markdown(
-        "In this section you will track the evolution of your stick ungulates as they evolve in each environment over 10 generations. The code to do so has already been set up and all you have to do is run it.  For the first generation, the code will output the various calculations so that you can follow the steps of our model.  For generations 2 to 10, the code will simply output a table that reports the frequency of each allele, the frequency of each phenotype, the average fitness of the population and the average height of the population."))
-    # display(Markdown("### <span style='color:blue'>Environment 1"))
-    interact_manual(natural_selection,
-                    a=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - a\u2081',
-                                        style=style),
-                    b=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - b\u2081',
-                                        style=style),
-                    c=widgets.IntSlider(min=0, max=20, step=1, value=1, description='Environment 1 - c\u2081',
-                                        style=style),
-                    a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='AA - Height', style=style),
-                    b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Aa - Height', style=style),
-                    c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("**Modelling Natural Selection**"))
+         display(Markdown("In this section you will track the evolution of your stick ungulates as they evolve in each environment over 10 generations. The code to do so has already been set up and all you have to do is run it.  For the first generation, the code will output the various calculations so that you can follow the steps of our model.  For generations 2 to 10, the code will simply output a table that reports the frequency of each allele, the frequency of each phenotype, the average fitness of the population and the average height of the population."))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("**Trial 3.**"))
+         display(Markdown("**Modelling the Environment**"))
+         display(Markdown("In this section, you will define 3 different environments by specifying the resource values of a, b and c using the sliders below. Once you set the slider for the resource values of a, b and c the corresponding fitness function for that environment will be plotted immediately below. Use the graph of the fitness function to refine your selection of the resource values of a, b and c for each environment. In defining the three environments try to create three very different environments as reflected by the shape of the fitness function.  For example, you may wish to study a case in which there is selection for an extreme height, a case where there is selection for an intermediate height and a case where there is selection against an intermediate height."))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         interact_manual(fitness_function,
+                         a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2081', style=style),
+                         b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2081', style=style),
+                         c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2081', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         interact_manual(fitness_function,
+                    a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2082', style=style),
+                    b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2082', style=style),
+                    c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2082', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         interact_manual(fitness_function,
+                         a=widgets.IntSlider(min=0, max=10, step=1, value=1, description='a\u2083', style=style),
+                         b=widgets.IntSlider(min=0, max=10, step=1, value=1, description='b\u2083', style=style),
+                         c=widgets.IntSlider(min=0, max=10, step=1, value=1, description='c\u2083', style=style));
+         display(Markdown("The environments you specify will remain unchanged over the course of the three trials."))
+         display(Markdown("If you are working with other students, then coordinate amongst yourselves so to ensure you explore as many variations of environments as possible."))
+         display(Markdown("**Modelling the Population**"))         
+         display(Markdown("In this section, you will define the characteristics of an initial population of stick ungulates that will inhabit each of your three environments. The height of the stick ungulates will be determined by two alleles and . Using the appropriate sliders below specify the heights that are determined by each phenotype. Next the appropriate sliders below specify the initial frequency of each allele. Once you have set the heights that are determined by each phenotype and the initial frequency of each allele a table of detailing your population will be outputted. The table will identify the three genotypes in your population, their frequency, corresponding heights and fitness in each of the three environments. Population averages will also be reported."))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         #display(Markdown("<span style='color:blue'>Phenotypes"))
+         interact_manual(generation,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("**Modelling Natural Selection**"))
+         display(Markdown("In this section you will track the evolution of your stick ungulates as they evolve in each environment over 10 generations. The code to do so has already been set up and all you have to do is run it.  For the first generation, the code will output the various calculations so that you can follow the steps of our model.  For generations 2 to 10, the code will simply output a table that reports the frequency of each allele, the frequency of each phenotype, the average fitness of the population and the average height of the population."))
+         display(Markdown("### <span style='color:blue'>Environment 1"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 2"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
+         display(Markdown("### <span style='color:blue'>Environment 3"))
+         interact_manual(natural_selection,
+                         A=widgets.FloatSlider(min=0, max=1, step=0.1, value=0.1, description='Initial allele frequencies: A', style=style),
+                         a1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: AA - Height', style=style),
+                         b1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: Aa - Height', style=style),
+                         c1=widgets.IntSlider(min=0, max=10, step=1, value=1, description='Phenotypes: aa - Height', style=style));
 
 
-def natural_selection(a, b, c, a1, b1, c1):
+def natural_selection(A, a1, b1, c1):
     from IPython.display import HTML, display
-    freq_AA = 'p\u00b2 = ' + '{0:.3g}'.format(a1/10 * a1/10)
-    freq_Aa = 'p(1-p) = ' + '{0:.3g}'.format(b1/10 * (1 - b1/10))
-    freq_aa = '(1 - p)\u00b2 = ' + '{0:.3g}'.format((1-c1/10) * (1-c1/10))
-    fitness_AA = 'w\u2081' + '(xAA) = ' + '{0:.3g}'.format(a * a1 * a1 + b * a1 + c)
-    fitness_Aa = 'w\u2081' + '(xAa) = ' + '{0:.3g}'.format(a * b1 * b1 + b * b1 + c)
-    fitness_aa = 'w\u2081' + '(xaa) = ' + '{0:.3g}'.format(a * c1 * c1 + b * c1 + c)
+    freq_AA = 'p\u00b2 = ' + '{0:.3g}'.format(A/10 * A/10)
+    freq_Aa = 'p(1-p) = ' + '{0:.3g}'.format(A/10 * (1 - A)/10)
+    freq_aa = '(1 - p)\u00b2 = ' + '{0:.3g}'.format((1-A)/10 * (1-A)/10)
+    x_AA = A/10 * A/10
+    x_Aa = A/10 * (1 - A)/10
+    x_aa = (1-A)/10 * (1-A)/10
+    fitness_AA = 'w\u2081' + '(xAA) = ' + '{0:.3g}'.format(x_AA * x_AA * a1 + b1 * x_AA + c1)
+    fitness_Aa = 'w\u2081' + '(xAa) = ' + '{0:.3g}'.format(x_Aa * x_Aa * a1 + b1 * x_Aa + c1)
+    fitness_aa = 'w\u2081' + '(xaa) = ' + '{0:.3g}'.format(x_aa * x_aa * a1 + b1 * x_aa + c1)
+    wAA = x_AA * x_AA * a1 + b1 * x_AA + c1
+    wAa = x_Aa * x_Aa * a1 + b1 * x_Aa + c1
+    waa = x_aa * x_aa * a1 + b1 * x_aa + c1
     display(Markdown("In the first generation, we have the frequency and fitness of each phenotype:"))
     data_generation_1 = [['Phenotype', 'Frequency', 'Fitness'],
             ['AA', freq_AA, fitness_AA],
@@ -318,19 +372,17 @@ def natural_selection(a, b, c, a1, b1, c1):
         )
     ))
     display(Markdown("The average fitness of the population then is the fitness of each phonotype weighted by their frequency."))
-    w1_calculation = (a1 / 10 * a1 / 10) * (a * a1 * a1 + b * a1 + c) + (b1 / 10 * (1 - b1 / 10)) * (a * b1 * b1 + b * b1 + c) + ((1 - c1 / 10) * (1 - c1 / 10)) * (a * c1 * c1 + b * c1 + c)
-    w1 = 'W\u2081 = ' + 'p\u00b2' + 'w\u2081' + 'x(AA) + p(1-p)' + 'w\u2081' + 'x(Aa) + ' + '(1-p)\u00b2' + 'w\u2081(x(aa)) = ' + '{0:.3g}'.format(w1_calculation)
+    w1_calculation = A*A*wAA + 2*A*(1-A)*wAa + (1-A)*(1-A)*waa  
+    w1 = 'W\u2081 = ' + 'p\u00b2' + 'w\u2081' + 'x(AA) + 2p(1-p)' + 'w\u2081' + 'x(Aa) + ' + '(1-p)\u00b2' + 'w\u2081(x(aa)) = ' + '{0:.3g}'.format(w1_calculation)
     print(w1)
     display(Markdown("The average fitness of allele A is:"))
-    wA_calculation = (a1 / 10 * a1 / 10) * (a * a1 * a1 + b * a1 + c) + a1 / 10 
+    wA_calculation = A*A*wAA + A*(1-A)*wAa
     wA = 'W(A) = ' + '(' + 'p\u00b2' + 'w(AA) + p(1-p)w(Aa)) = ' + '{0:.3g}'.format(wA_calculation)
     print(wA)
     display(Markdown("The frequency of A in next generation is:"))
     p = "p' = W(A)/W = " + "((1 - p)\u00b2" + "w(aa) + " + "p(1-p)w(Aa))/W = " + '{0:.3g}'.format(wA_calculation/w1_calculation)
     print(p)
-    wAA = a * a1 * a1 + b * a1 + c
-    wAa = a * b1 * b1 + b * b1 + c
-    waa = a * c1 * c1 + b * c1 + c
+    
     freqA_2 = wA_calculation/w1_calculation
     w2_calculation = cal_fitness_function(wAA, wAa,waa,wA_calculation/w1_calculation)
     wA2_calculation = cal_A_fitness(wA_calculation/w1_calculation,wAA, wAa)
@@ -392,14 +444,17 @@ def cal_fitness_function(wAA, wAa, waa, p):
 def cal_A_fitness(p,wAA, wAa):
     return p*p*wAA + p*(1-p)*wAa
 
-def generation(a, b, c, a1, b1, c1):
+def generation(A, a1, b1, c1):
     from IPython.display import HTML, display
-    freq_AA = 'p\u00b2 = ' + '{0:.3g}'.format(a1/10 * a1/10)
-    freq_Aa = 'p(1-p) = ' + '{0:.3g}'.format(b1/10 * (1 - b1/10))
-    freq_aa = '(1 - p)\u00b2 = ' + '{0:.3g}'.format((1-c1/10) * (1-c1/10))
-    fitness_AA = 'w\u2081' + '(xAA) = ' + '{0:.3g}'.format(a * a1 * a1 + b * a1 + c)
-    fitness_Aa = 'w\u2081' + '(xAa) = ' + '{0:.3g}'.format(a * b1 * b1 + b * b1 + c)
-    fitness_aa = 'w\u2081' + '(xaa) = ' + '{0:.3g}'.format(a * c1 * c1 + b * c1 + c)
+    freq_AA = 'p\u00b2 = ' + '{0:.3g}'.format(A/10 * A/10)
+    freq_Aa = 'p(1-p) = ' + '{0:.3g}'.format(A/10 * (1 - A)/10)
+    freq_aa = '(1 - p)\u00b2 = ' + '{0:.3g}'.format((1-A)/10 * (1-A)/10)
+    x_AA = A/10 * A/10
+    x_Aa = A/10 * (1 - A)/10
+    x_aa = (1-A)/10 * (1-A)/10
+    fitness_AA = 'w\u2081' + '(xAA) = ' + '{0:.3g}'.format(a1 * x_AA * x_AA + b1* x_AA + c1)
+    fitness_Aa = 'w\u2081' + '(xAa) = ' + '{0:.3g}'.format(a1 * x_Aa * x_Aa + b1* x_Aa + c1)
+    fitness_aa = 'w\u2081' + '(xaa) = ' + '{0:.3g}'.format(a1 * x_aa * x_aa + b1* x_aa + c1)
     data = [['Phenotype', 'Frequency', 'Fitness'],
             ['AA', freq_AA, fitness_AA],
             ['Aa', freq_Aa, fitness_Aa],
@@ -685,7 +740,7 @@ def fitness_function(a, b, c):
     import numpy as np
     import matplotlib.pyplot as plt
 
-    x = np.linspace(-10, 10, num=100)
+    x = np.linspace(0, 10, num=100)
     fx = []
     for i in range(len(x)):
         fx.append(a*x[i] ** 2 - b * x[i] + c)
